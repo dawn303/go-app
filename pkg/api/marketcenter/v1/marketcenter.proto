@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package marketcenter.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/dawn303/go-app/pkg/api/marketcenter/v1;v1";
+
+service MarketCenter {
+  rpc CurrencyList(CurrencyListRequest) returns (CurrencyListResponse) {
+    option (google.api.http) = {
+		get: "/v1/currency/list"
+	};
+  }
+}
+
+message CurrencyListRequest {
+  string token = 1;
+}
+
+message CurrencyReply {
+  string token = 1;
+  string price = 2;
+  string quoteChange = 3;
+}
+
+message CurrencyListResponse {
+  int64 totalCount = 1;
+  repeated CurrencyReply Currencies = 2;
+}

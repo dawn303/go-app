@@ -1,0 +1,11 @@
+# marketcenter configs
+http:
+  addr: ${MARKETCENTER_HTTP_ADDR}
+mysql:
+  host: ${MARKETCENTER_MYSQL_HOST}
+  database: ${MARKETCENTER_MYSQL_DATABASE}
+  username: ${MARKETCENTER_MYSQL_USERNAME}
+  password: ${MARKETCENTER_MYSQL_PASSWORD}
+log:
+  level: ${MARKETCENTER_LOG_LEVEL}
+  format: ${MARKETCENTER_LOG_FORMAT}
