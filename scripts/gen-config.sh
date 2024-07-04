@@ -8,7 +8,7 @@ GOAPP_ROOT=$(dirname "${BASH_SOURCE[0]}")/..
 source "${GOAPP_ROOT}/scripts/logging.sh"
 
 if [ $# -ne 2 ];then
-    onex::log::error "Usage: gen-config.sh manifests/env.local configs/marketcenter.tmpl.yaml"
+    onex::log::error "Usage: gen-config.sh manifests/env.local configs/markets.tmpl.yaml"
     exit 1
 fi
 

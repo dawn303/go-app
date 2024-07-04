@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package markets.v1;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/dawn303/go-app/pkg/api/markets/v1;v1";
+
+enum ErrorReason {
+  option (errors.default_code) = 500;
+
+  TokenNotFound = 0 [(errors.code) = 404];
+}

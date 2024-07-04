@@ -1,8 +1,8 @@
 package biz
 
 import (
-	"github.com/dawn303/go-app/internal/marketcenter/biz/market"
-	"github.com/dawn303/go-app/internal/marketcenter/store"
+	"github.com/dawn303/go-app/internal/markets/biz/market"
+	"github.com/dawn303/go-app/internal/markets/store"
 	"github.com/google/wire"
 )
 

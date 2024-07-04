@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type MysqlOptions struct {
+type MySQLOptions struct {
 	Host                  string
 	Username              string
 	Password              string
@@ -18,7 +18,7 @@ type MysqlOptions struct {
 	MaxConnectionLifeTime time.Duration
 }
 
-func (o *MysqlOptions) DSN() string {
+func (o *MySQLOptions) DSN() string {
 	return fmt.Sprintf(`%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=%t&loc=%s`,
 		o.Username,
 		o.Password,
@@ -29,7 +29,7 @@ func (o *MysqlOptions) DSN() string {
 	)
 }
 
-func NewMySQL(opts *MysqlOptions) (*gorm.DB, error) {
+func NewMySQL(opts *MySQLOptions) (*gorm.DB, error) {
 
 	setDefaults(opts)
 
@@ -60,7 +60,7 @@ func NewMySQL(opts *MysqlOptions) (*gorm.DB, error) {
 }
 
 // setDefaults set available default values for some fields.
-func setDefaults(opts *MysqlOptions) {
+func setDefaults(opts *MySQLOptions) {
 	if opts.Host == "" {
 		opts.Host = "127.0.0.1:3306"
 	}

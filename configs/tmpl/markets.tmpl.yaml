@@ -1,0 +1,11 @@
+# markets configs
+http:
+  addr: ${MARKETS_HTTP_ADDR}
+mysql:
+  host: ${MARKETS_MYSQL_HOST}
+  database: ${MARKETS_MYSQL_DATABASE}
+  username: ${MARKETS_MYSQL_USERNAME}
+  password: ${MARKETS_MYSQL_PASSWORD}
+log:
+  level: ${MARKETS_LOG_LEVEL}
+  format: ${MARKETS_LOG_FORMAT}

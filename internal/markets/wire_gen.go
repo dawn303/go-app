@@ -4,13 +4,13 @@
 //go:build !wireinject
 // +build !wireinject
 
-package marketcenter
+package markets
 
 import (
-	"github.com/dawn303/go-app/internal/marketcenter/biz"
-	"github.com/dawn303/go-app/internal/marketcenter/server"
-	"github.com/dawn303/go-app/internal/marketcenter/service"
-	"github.com/dawn303/go-app/internal/marketcenter/store"
+	"github.com/dawn303/go-app/internal/markets/biz"
+	"github.com/dawn303/go-app/internal/markets/server"
+	"github.com/dawn303/go-app/internal/markets/service"
+	"github.com/dawn303/go-app/internal/markets/store"
 	"github.com/dawn303/go-app/internal/pkg/bootstrap"
 	"github.com/dawn303/go-app/pkg/db"
 	"github.com/go-kratos/kratos/v2"
@@ -18,20 +18,20 @@ import (
 
 // Injectors from wire.go:
 
-func wireApp(appInfo *bootstrap.AppInfo, config *server.Config, mysqlOptions *db.MysqlOptions) (*kratos.App, func(), error) {
+func wireApp(appInfo *bootstrap.AppInfo, config *server.Config, mySQLOptions *db.MySQLOptions) (*kratos.App, func(), error) {
 	logger := bootstrap.NewLogger(appInfo)
 	appConfig := &bootstrap.AppConfig{
 		Info:   appInfo,
 		Logger: logger,
 	}
-	gormDB, err := db.NewMySQL(mysqlOptions)
+	gormDB, err := db.NewMySQL(mySQLOptions)
 	if err != nil {
 		return nil, nil, err
 	}
 	datastore := store.NewStore(gormDB)
 	bizBiz := biz.NewBiz(datastore)
-	marketCenterService := service.NewMarketCenterService(bizBiz)
-	httpServer := server.NewHTTPServer(config, marketCenterService, logger)
+	marketsService := service.NewMarketsService(bizBiz)
+	httpServer := server.NewHTTPServer(config, marketsService, logger)
 	v := server.NewServers(httpServer)
 	app := bootstrap.NewApp(appConfig, v...)
 	return app, func() {

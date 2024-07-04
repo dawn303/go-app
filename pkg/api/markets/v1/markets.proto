@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package markets.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/dawn303/go-app/pkg/api/markets/v1;v1";
+
+service Markets {
+  rpc TokenList(TokenListRequest) returns (TokenListResponse) {
+    option (google.api.http) = {
+		get: "/v1/token/list"
+	};
+  }
+}
+
+message TokenListRequest {
+  string kind = 1;
+}
+
+message TokenReply {
+  string token = 1;
+  string price = 2;
+  string quoteChange = 3;
+}
+
+message TokenListResponse {
+  int64 totalCount = 1;
+  repeated TokenReply Tokens = 2;
+}

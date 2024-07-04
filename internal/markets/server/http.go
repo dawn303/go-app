@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/dawn303/go-app/internal/marketcenter/service"
-	v1 "github.com/dawn303/go-app/pkg/api/marketcenter/v1"
+	"github.com/dawn303/go-app/internal/markets/service"
+	v1 "github.com/dawn303/go-app/pkg/api/markets/v1"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
@@ -10,7 +10,7 @@ import (
 )
 
 // NewHTTPServer new an HTTP server.
-func NewHTTPServer(c *Config, mcs *service.MarketCenterService, logger log.Logger) *http.Server {
+func NewHTTPServer(c *Config, mcs *service.MarketsService, logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
@@ -26,6 +26,6 @@ func NewHTTPServer(c *Config, mcs *service.MarketCenterService, logger log.Logge
 		opts = append(opts, http.Timeout(c.Http.Timeout))
 	}
 	srv := http.NewServer(opts...)
-	v1.RegisterMarketCenterHTTPServer(srv, mcs)
+	v1.RegisterMarketsHTTPServer(srv, mcs)
 	return srv
 }
